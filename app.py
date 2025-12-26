@@ -1,29 +1,26 @@
-import time
-import sys
+from flask import Flask
 
+app = Flask(__name__)
+
+@app.route("/")
 def print_lyrics():
- lyrics = [
- "Sambhaal ke rakha wo phool mera tu",
- "Meri shayari mein zaroor raha tu",
- "Jo aankhon mein pyaari si duniya basaayi",
- "Wo duniya bhi tha tu, wo lamha bhi tha tu",
- "Haan, lagte hain mujhko ye kisse sataane",
- "Deta na dil mera tujhko bhulaane",
- "Adhoore se vaade, adhoori si raatein",
- "Ab hisse mein daakhil mere bas wo yaadein"
- ]
+    lyrics = [
+        "Sambhaal ke rakha wo phool mera tu",
+        "Meri shayari mein zaroor raha tu",
+        "Jo aankhon mein pyaari si duniya basaayi",
+        "Wo duniya bhi tha tu, wo lamha bhi tha tu",
+        "Haan, lagte hain mujhko ye kisse sataane",
+        "Deta na dil mera tujhko bhulaane",
+        "Adhoore se vaade, adhoori si raatein",
+        "Ab hisse mein daakhil mere bas wo yaadein"
+    ]
 
-  delays = [0.7, 0.7, 0.4, 0.5, 0.5, 0.7, 0.7, 1.0]
+    output = "<h2>Finding Her:</h2><br>"
+    for line in lyrics:
+        output += line + "<br>"
 
-  print("Finding Her: \n")
- time.sleep(1.2)
+    return output
 
-  for i, line in enumerate(lyrics):
- for char in line:
- sys.stdout.write(char)
- sys.stdout.flush()
- time.sleep(0.1) 
-  print()
- time.sleep(delays[i])
-
-print_lyrics()
+# Required for Render
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
